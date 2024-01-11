@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+
+    <style name="MyFloatingButton" parent="Widget.Material3.Button.IconButton.Filled">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="cornerRadius">5dp</item>
+        <item name="android:padding">12dp</item>
+        <item name="iconSize">24dp</item>
+        <item name="iconPadding">12dp</item>
+        <item name="backgroundTint">?attr/colorBgButton</item>
+        <item name="iconTint">?attr/colorFgButton</item>
+        <item name="android:textColor">?attr/colorFgButton</item>
+
+
+    </style>
+
+    <style name="ToolBarButton" parent="Widget.Material3.Button.IconButton">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="iconSize">32dp</item>
+        <item name="iconTint">?attr/colorBgButton</item>
+    </style>
+
+    <style name="ToolBarTheme" parent="Widget.Material3.Toolbar">
+        <item name="android:background">?attr/colorBgCard</item>
+
+    </style>
+
+    <style name="MyPopupMenuStyle" parent="@style/Widget.AppCompat.PopupMenu">
+        <item name="android:backgroundTint">?attr/colorOpposite</item>
+        <item name="android:textColor">@color/WarnRed</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">16sp</item>
+    </style>
+
+
+</resources>

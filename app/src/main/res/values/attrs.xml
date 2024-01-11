@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+<!--    <attr name="colorBg" format="color" />-->
+<!--    <attr name="colorFg" format="color" />-->
+
+    <attr name="colorBgButton" format="color" />
+    <attr name="colorFgButton" format="color" />
+    <attr name="colorBgCard" format="color" />
+    <attr name="colorTitle1" format="color" />
+    <attr name="colorTitle2" format="color" />
+    <attr name="colorText" format="color" />
+    <attr name="colorOpposite" format="color" /> <!-- White for Night AND Black for Day -->
+</resources>
