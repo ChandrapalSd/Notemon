@@ -1,14 +1,19 @@
 package com.github.chandrapalsd.notemon
 
 import android.app.Activity
+import android.content.Context
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
+import android.graphics.Rect
 import android.os.Bundle
+import android.view.MotionEvent
+import android.view.inputmethod.InputMethodManager
+import android.widget.EditText
 import android.widget.LinearLayout
 import android.widget.PopupMenu
 import android.widget.SearchView
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
+import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.view.ContextThemeWrapper
 import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
@@ -36,9 +41,7 @@ class MainActivity : AppCompatActivity() {
                 note?.let {
                     viewModel.insertNote(note)
                     Snackbar.make(
-                        binding.root,
-                        "Note Inserted",
-                        Snackbar.LENGTH_SHORT
+                        binding.root, "Note Inserted", Snackbar.LENGTH_SHORT
                     ).show()
                 }
             }
@@ -50,9 +53,7 @@ class MainActivity : AppCompatActivity() {
                 note?.let {
                     viewModel.updateNote(note)
                     Snackbar.make(
-                        binding.root,
-                        "Note Updated",
-                        Snackbar.LENGTH_SHORT
+                        binding.root, "Note Updated", Snackbar.LENGTH_SHORT
                     ).show()
                 }
             }
@@ -65,7 +66,6 @@ class MainActivity : AppCompatActivity() {
 
         initUi()
 
-        //viewModel = ViewModelProvider(this, NoteViewModel.Factory(repository))[NoteViewModel::class.java]
         viewModel.allNotes.observe(this) { list ->
             list?.let {
                 adapter.updateList(list)
@@ -73,6 +73,22 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    // Clear focus on touch outside SearchView
+    override fun dispatchTouchEvent(event: MotionEvent?): Boolean {
+        if (event?.action == MotionEvent.ACTION_UP) {
+            val view = currentFocus
+            if (view is EditText) {
+                val outRect = Rect()
+                view.getGlobalVisibleRect(outRect)
+                if (!outRect.contains(event.rawX.toInt(), event.rawY.toInt())) {
+                    view.clearFocus()
+                    val imm = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+                    imm.hideSoftInputFromWindow(view.getWindowToken(), 0)
+                }
+            }
+        }
+        return super.dispatchTouchEvent(event)
+    }
 
     private fun initUi() {
 
@@ -116,16 +132,15 @@ class MainActivity : AppCompatActivity() {
     }
 
 
-    private fun popupDisplay(selectedNote:Note, cardView: CardView) {
+    private fun popupDisplay(selectedNote: Note, cardView: CardView) {
         val wrapper = ContextThemeWrapper(this, R.style.MyPopupMenuStyle)
         val popup = PopupMenu(wrapper, cardView)
-        popup.setOnMenuItemClickListener {item->
-            if(item?.itemId == R.id.delete_note){
+        popup.setOnMenuItemClickListener { item ->
+            if (item?.itemId == R.id.delete_note) {
                 viewModel.deleteNote(selectedNote)
                 Snackbar.make(binding.root, "Note Deleted", Snackbar.LENGTH_SHORT).show()
-                 true
-            }
-            else false
+                true
+            } else false
         }
 
         popup.inflate(R.menu.pop_up_delete_menu)
