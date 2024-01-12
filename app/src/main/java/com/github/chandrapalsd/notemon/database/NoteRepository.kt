@@ -2,8 +2,11 @@ package com.github.chandrapalsd.notemon.database
 
 import androidx.lifecycle.LiveData
 import com.github.chandrapalsd.notemon.models.Note
+import javax.inject.Inject
+import javax.inject.Singleton
 
-class NoteRepository(private val noteDao: NoteDao) {
+@Singleton
+class NoteRepository @Inject constructor(private val noteDao: NoteDao) {
 
     val allNotes:LiveData<List<Note>> = noteDao.getAllNotes()
 

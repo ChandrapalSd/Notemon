@@ -1,16 +1,13 @@
 package com.github.chandrapalsd.notemon.adapters
 
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
-import com.github.chandrapalsd.notemon.R
 import com.github.chandrapalsd.notemon.databinding.NoteListItemBinding
 import com.github.chandrapalsd.notemon.models.Note
 import java.text.SimpleDateFormat
 import java.util.Locale
-import kotlin.random.Random
 
 class NotesAdapter(private val clickListener: NoteClickListener) :
     RecyclerView.Adapter<NotesAdapter.NoteViewHolder>() {
@@ -36,8 +33,7 @@ class NotesAdapter(private val clickListener: NoteClickListener) :
     }
 
     private fun Note.contains(search: String): Boolean {
-        return title?.lowercase()?.contains(search.lowercase()) == true ||
-                note?.lowercase()?.contains(search.lowercase()) == true
+        return title.lowercase().contains(search.lowercase()) || note.lowercase().contains(search.lowercase())
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): NoteViewHolder {

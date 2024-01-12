@@ -2,11 +2,9 @@ package com.github.chandrapalsd.notemon
 
 import android.app.Activity
 import android.content.Intent
-import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.github.chandrapalsd.notemon.databinding.ActivityAddNoteBinding
-import com.github.chandrapalsd.notemon.databinding.ActivityMainBinding
 import com.github.chandrapalsd.notemon.models.Note
 import com.github.chandrapalsd.notemon.utils.getParcelableNoteExtra
 import java.util.Date

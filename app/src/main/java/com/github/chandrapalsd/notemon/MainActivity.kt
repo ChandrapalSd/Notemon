@@ -13,22 +13,20 @@ import androidx.appcompat.view.ContextThemeWrapper
 import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.github.chandrapalsd.notemon.adapters.NotesAdapter
-import com.github.chandrapalsd.notemon.database.NoteDatabase
-import com.github.chandrapalsd.notemon.database.NoteRepository
 import com.github.chandrapalsd.notemon.databinding.ActivityMainBinding
 import com.github.chandrapalsd.notemon.models.Note
 import com.github.chandrapalsd.notemon.utils.getParcelableNoteExtra
 import com.github.chandrapalsd.notemon.viewmodels.NoteViewModel
 import com.google.android.material.snackbar.Snackbar
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
 
-    private lateinit var database: NoteDatabase
-    private lateinit var repository: NoteRepository
+    private val viewModel: NoteViewModel by viewModels()
 
-    private val viewModel: NoteViewModel by viewModels { NoteViewModel.Factory(repository) }
     lateinit var adapter: NotesAdapter
 
     private val createNoteLauncher =
@@ -66,10 +64,6 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         initUi()
-
-
-        database = NoteDatabase.getDatabase(this)
-        repository = NoteRepository(database.getNoteDao())
 
         //viewModel = ViewModelProvider(this, NoteViewModel.Factory(repository))[NoteViewModel::class.java]
         viewModel.allNotes.observe(this) { list ->
