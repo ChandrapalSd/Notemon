@@ -9,7 +9,7 @@ A fully Material Note taking app with minimal features, just enough to be useful
 <img src="/assets/screenshotSearchDark.png" height="500px"/>
 <img src="/assets/screenshotHomeDeleteLight.png" height="500px"/>
 <img src="/assets/screenshotHomeDeleteDark.png" height="500px"/>
-q
+
 ## Download Apk
-<a href="#">
-<img alt="Get it on Google Play" src="https://play.google.com/intl/en_us/badges/images/apps/en-play-badge.png" height="50px"/></a>
+<a href="https://github.com/ChandrapalSd/Notemon/releases/download/v1.0/Notemon_1.0.apk">
+<img alt="Download Apk installer" src="https://play.google.com/intl/en_us/badges/images/apps/en-play-badge.png" height="50px"/></a>
